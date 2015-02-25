@@ -2,7 +2,7 @@
 # detach:  false
 port:    8888
 host:    0.0.0.0
-baseurl: "/JavenBlog" # does not include hostname
+# baseurl: "/JavenBlog" # does not include hostname
 
 #
 title:            Javen Blog
