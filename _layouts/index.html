@@ -1,17 +1,79 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta content='{{ site.title }}' property='og:title' />
-    <title>{{ site.title }}</title>
-    {% include head.html %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+    <title>{{ page.title }}</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
   </head>
   <body>
-    {% include header.html %}
-    <div id='container'>
-      {% include links.html %}
-      <div class="content">
+    <aside id="sidebar">
+      <nav id="tags">
+        <a href="/index.html" id="avatar"></a>
+
+        <ul id="tags__ul">
+          <li id="js-label1" class="tags__li tags-btn active">All</li>
+          <li id="js-label2" class="tags__li tags-btn">iOS</li>
+          <li id="js-label3" class="tags__li tags-btn">Java</li>
+          <li id="js-label4" class="tags__li tags-btn">Python</li>
+          <li id="js-label5" class="tags__li tags-btn">Other</li>
+          <!-- <li id="js-label3" class="tags__li tags-btn">推广</li>
+          <li id="js-label4" class="tags__li tags-btn">生活</li>
+          <li id="js-label5" class="tags__li tags-btn">读书</li>
+          <li id="js-label6" class="tags__li tags-btn">收藏</li> -->
+          <li id="js-label6" class="tags__li tags-btn">About</li>
+        </ul>
+
+        <div id="tags__bottom">
+          <a href="mailto:{{ site.author.email }}" id="icon-email" class="tags-btn fontello"></a>
+          <a href="/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+        </div>
+      </nav> <!-- end #tags -->
+
+      <div id="posts-list">
+        <form action="" id="search-form">
+          <a href="/index.html" id="mobile-avatar"></a>
+          <!-- NOTE: input field is disabled by default -->
+          <!--<input id="search-input" type="text" placeholder="爱生活，爱Coding" disabled >-->
+          <div style="padding: 20px 20px 20px; font-size: 18px;font-family: inherit; color: #1B813F;
+"> Coding, Sharing </div>
+        </form>
+
+        <nav id="pl__container">
+        {% for post in site.posts %}
+          <a class="{{ post.categories }} pl__all" href="{{ post.url }}"><span class="pl__circle"></span><span class="pl__title">{{ post.title }}</span><span class="pl__date">{{ post.date | date: "%b %Y" }}</span></a>
+        {% endfor %}
+        </nav>
+      </div> <!-- end #posts-list -->
+    </aside> <!-- end #sidebar -->
+
+    <div id="post">
+      <div id="pjax">
         {{ content }}
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
       </div>
-    </div>
-    {% include footer.html %}
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+    <script src="/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/jquery.pjax.js"></script>
+    <script src="/assets/js/nprogress.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8df9f41c154d89488e1b1cc18038ab8f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
   </body>
 </html>
