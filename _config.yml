@@ -13,3 +13,5 @@ title: Javen Blog
 description: Javen的博客
 # url: http://zhenchen.me
 language: 中文
+
+exclude: ['vendor', 'README.md', 'Gemfile', 'Gemfile.lock', 'config.ru', 'unicorn.rb', 'Procfile']
