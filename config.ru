@@ -21,7 +21,7 @@ app = Proc.new do |env|
       archive_url = "#{repo_url}/archive/master"
       puts "--> updating to #{params['ref']}.."
       puts `jekyll build`
-      `rm -rf $HOME/_posts; curl -s -L -o $TMPDIR/archive.zip #{archive_url}; unzip -qo -d $HOME $TMPDIR/archive.zip; cd $HOME; jekyll build`
+      `rm -rf $HOME/_posts; curl -s -L -o $TMPDIR/archive.zip #{archive_url}; unzip -qo -d $TMPDIR/archive.zip $HOME; cd $HOME; jekyll build`
       puts "--> done."
     else
       STDERR.puts "--> error: no https_url field found in params: #{params}"
