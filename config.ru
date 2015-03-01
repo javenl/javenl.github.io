@@ -42,4 +42,4 @@ use Rack::Deflater
 #   :urls => %w[/],
 #   :try  => ['index.html', '/index.html']
 
-run Rack::URLMap.new('/' => jekyll, '/deploy' => app)
+run Rack::URLMap.new('/' => jekyll, '/_' => app)
