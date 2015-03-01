@@ -16,7 +16,7 @@ app = Proc.new do |env|
   end
 
   if request.post? && params['token'] == WEBHOOK_TOKEN
-    repo_url = params['repository']['url'] rescue nil
+    repo_url = params['repository']['https_url'] rescue nil
     if repo_url
       archive_url = "#{repo_url}/archive/master"
       puts "--> updating to #{params['ref']}.."
@@ -24,7 +24,7 @@ app = Proc.new do |env|
       `rm -rf $HOME/_posts; curl -s -L -o $TMPDIR/archive.zip #{archive_url}; unzip -qo -d $HOME $TMPDIR/archive.zip; cd $HOME; jekyll build`
       puts "--> done."
     else
-      STDERR.puts "--> error: no url field found in params: #{params}"
+      STDERR.puts "--> error: no https_url field found in params: #{params}"
     end
 
     ['200', { 'Conetent-Type' => 'application/json;charset=utf-8' }, ['ok']]
