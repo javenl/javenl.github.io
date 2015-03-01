@@ -18,7 +18,7 @@ app = Proc.new do |env|
   if request.post? && params['token'] == WEBHOOK_TOKEN
     repo_url = params['repository']['https_url'] rescue nil
     if repo_url
-      archive_url = "#{repo_url}/archive/master"
+      archive_url = "#{repo_url}/git/archive/master"
       puts "archive_url #{archive_url}"
       puts "--> updating to #{params['ref']}.."
       puts `jekyll build`
