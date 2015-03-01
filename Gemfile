@@ -1,5 +1,4 @@
 source 'http://ruby.taobao.org'
-ruby '2.0.0'
 gem 'jekyll'
 gem 'rack-jekyll', github: 'adaoraul/rack-jekyll'
 gem 'rack-contrib', :require => 'rack/contrib/try_static'
