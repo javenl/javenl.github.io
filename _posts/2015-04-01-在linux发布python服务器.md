@@ -76,14 +76,16 @@ description:
 
 `apt-get install git`
 
+`apt-get install supervisor`
+
 `pip install gunicorn`
 
-`pip install supervisor`
+`pip install django`
 
-`pip install django==1.6.6`
-
-`pip install gunicon`
 ```
+
+如果`apt-get install xxx`出现无法下载的情况，可以试下先`apt-get update`刷新一下
+
 
 安装环境后把代码同步下来
 
@@ -106,6 +108,7 @@ description:
 
 ####2.写配置文件
 编写nginx配置文件`nginx.conf`，保存到`/etc/nginx/`
+
 
 ```
 user www-data;
@@ -136,6 +139,7 @@ http {
     }
 }
 ```
+PS:如果发现nginx访问static没有权限，可以把user改为root，或者给static添加权限。
 
 检测一下配置有没有问题
 
@@ -143,7 +147,7 @@ http {
 
 >nginx配置详细请移步[nginx官网文档](http://nginx.org/en/docs/beginners_guide.html)
 
-编写supervisor配置文件`[project name].conf`，保存到`/etc/supervisor/conf.d`
+编写supervisor配置文件`[project name].conf`，保存到`/etc/supervisor/conf.d/`
 
 ```
 [program:[project name]]
@@ -177,6 +181,10 @@ stdout_logfile          = [log path]
 [](blogimage/013.png)
 
 更新supervisor配置
+
+    supervisorctl reread
+
+重启supervisor
 
 	supervisorctl update
 
@@ -263,7 +271,21 @@ web hook
 
 
 
+##常见问题
 
+1.使用gunicorn -k gevent时出现You need gevent installed to use this worker
+
+```
+pip install greenlet
+pip install gevent
+```
+
+
+2.`pip install xxx`出现 command 'x86_64-linux-gnu-gcc' failed with exit status 1
+
+```
+sudo apt-get install python-dev
+```
 
 
 
